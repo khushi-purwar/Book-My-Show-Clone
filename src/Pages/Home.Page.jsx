@@ -2,7 +2,6 @@ import React from "react";
 
 //components
 import EntertainmentCardSlider from "../Components/Entertainment/Entertainmentcard.Component";
-// import Premier from "../Components/Premier/Premier.Component";
 import PosterSlider from "../Components/PosterSlider/PosterSliderComponent";
 
 // config

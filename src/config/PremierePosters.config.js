@@ -34,7 +34,21 @@ const PremireImages = [
         alt : "Ammonite",
         title: "Ammonite",
         subtitle : "English",
-    }
+    },
+    {
+        src : "https://in.bmscdn.com/iedb/movies/images/extra/vertical_logo/mobile/thumbnail/xxlarge/ammonite-et00310901-19-05-2021-03-29-52.jpg",
+        alt : "Ammonite",
+        title: "Ammonite",
+        subtitle : "English",
+    },
+    {
+        src : "https://in.bmscdn.com/iedb/movies/images/extra/vertical_logo/mobile/thumbnail/xxlarge/godzilla-vs-kong-et00122511-16-06-2021-12-47-29.jpg",
+        alt : "Godzilla vs Kong",
+        title: "Godzilla vs Kong",
+        subtitle : "English",
+    },
+    
+
 
 ]
 

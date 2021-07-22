@@ -1,10 +1,21 @@
-import React from 'react'
+import React , {useState, useEffect} from 'react'
 import HeroSlider from "react-slick";
+import axios from 'axios';
 
 // component
 import {NextArrow, PrevArrow} from './Arrows.Component'
 
 const HeroCaraousel = () => {
+
+    const [images, setImages] = useState( [] );
+
+    useEffect( ()=>{   
+        const requestNowPlayingMovie = async()=>{
+            const getImages = await axios.get("/movie/now_playing");
+            setImages(getImages.data.results);
+        };
+        requestNowPlayingMovie();
+    } ,[])    // make api call once
 
     const settingsLG = {
         arrows: true,
@@ -28,13 +39,7 @@ const HeroCaraousel = () => {
         prevArrow : <PrevArrow />
     };
 
-    const images = [
-       "https://in.bmscdn.com/promotions/cms/creatives/1625720005981_upgradgrouppagebanner_webshowcase_1280x500.jpg",
-       "https://in.bmscdn.com/promotions/cms/creatives/1625559967524_bsm_1280x500_romcom.jpg",
-       "https://in.bmscdn.com/promotions/cms/creatives/1625135512787_bas_1280x500.jpg",
-       "https://in.bmscdn.com/promotions/cms/creatives/1626065541062_spanishbundle1280x500ios.jpg",
-       "https://in.bmscdn.com/promotions/cms/creatives/1626117212416_deveshdixitlive_ongroundshow_webshowcase_1280x500.jpg"
-    ]
+   
     return (
         <>
 
@@ -44,7 +49,7 @@ const HeroCaraousel = () => {
                     {images.map((image) => (
                         <div className="w-full h-56 md:h-80 py-3">
                             <img
-                                src={image}
+                                src={`https://image.tmdb.org/t/p/original${image.backdrop_path}`}
                                 alt="images"
                                 className="w-full h-full"
                             />
@@ -59,7 +64,7 @@ const HeroCaraousel = () => {
                     {images.map((image) => (
                         <div className="w-full h-96 px-2 py-3">
                             <img
-                                src={image}
+                                src={`https://image.tmdb.org/t/p/original${image.backdrop_path}`}
                                 alt="images"
                                 className="w-full h-full rounded-md"
                             />

@@ -1,16 +1,47 @@
-import React from "react";
+import React , {useState, useEffect} from "react";
 
 //components
 import EntertainmentCardSlider from "../Components/Entertainment/Entertainmentcard.Component";
 import PosterSlider from "../Components/PosterSlider/PosterSliderComponent";
 
 // config
-import PremierePosters from '../config/PremierePosters.config';
-import StreamingPosters from '../config/StreamingPoster.config';
-import OutdoorPosters from "../config/Outdoor.config";
+// import PremierePosters from '../config/PremierePosters.config';
+// import StreamingPosters from '../config/StreamingPoster.config';
+// import OutdoorPosters from "../config/Outdoor.config";
+import axios from "axios";
 
 
 const HomePage = () => {
+
+    const [popularMovies, setPopularMovies] = useState( [] );
+    const [topRatedMovies, setTopRatedMovies] = useState( [] );
+    const [upcomingMovies, setUpcomingMovies] = useState( [] );
+
+    useEffect (()=>{
+        const requestPopularMovies = async()=>{
+            const getPopularMovies = await axios.get("/movie/popular")
+            setPopularMovies(getPopularMovies.data.results);
+        }
+        requestPopularMovies();
+    },[])
+
+    useEffect (()=>{
+        const requestTopRatedMovies = async()=>{
+            const getTopRatedMovies = await axios.get("/movie/top_rated")
+            setTopRatedMovies(getTopRatedMovies.data.results);
+        }
+        requestTopRatedMovies();
+    },[])
+
+    useEffect (()=>{
+        const requestUpcomingMovies = async()=>{
+            const getUpcomingMovies = await axios.get("/movie/upcoming")
+            setUpcomingMovies(getUpcomingMovies.data.results);
+        }
+        requestUpcomingMovies();
+    },[])
+
+
     return (
         <>
             <div className="">
@@ -30,7 +61,7 @@ const HomePage = () => {
                             />
                         </div>
                         <PosterSlider
-                            images={PremierePosters}
+                            images={popularMovies}
                             title="Premieres"
                             subtitle="Brand new releases every Friday"
                             isDark
@@ -39,41 +70,41 @@ const HomePage = () => {
                 </div>
             </div>
 
-            <div className="container mx-auto px-10 py-8">
+            <div className="container mx-auto px-10 py-2">
                 <PosterSlider
-                    images={StreamingPosters}
+                    images={topRatedMovies}
                     title="Online Streaming Events"
                     isDark={false}
                 />
             </div>
 
-            <div className="container mx-auto px-10 py-8">
+            <div className="container mx-auto px-10 py-2">
                 <PosterSlider
-                    images={OutdoorPosters}
+                    images={upcomingMovies}
                     title="Outdoor Events"
                     isDark={false}
                 />
             </div>
 
-            <div className="container mx-auto px-10 py-8">
+            <div className="container mx-auto px-10 py-2">
                 <PosterSlider
-                    images={StreamingPosters}
+                    images={popularMovies}
                     title="Laughter Therapy"
                     isDark={false}
                 />
             </div>
 
-            <div className="container mx-auto px-10 py-8">
+            <div className="container mx-auto px-10 py-2">
                 <PosterSlider
-                    images={OutdoorPosters}
+                    images={topRatedMovies}
                     title="Popular Events"
                     isDark={false}
                 />
             </div>
 
-            <div className="container mx-auto px-10 py-8">
+            <div className="container mx-auto px-10 py-2">
                 <PosterSlider
-                    images={OutdoorPosters}
+                    images={upcomingMovies}
                     title="The Latest Plays"
                     isDark={false}
                 />
